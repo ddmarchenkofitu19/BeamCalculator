@@ -1,0 +1,173 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net7.0-android;</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+
+		<OutputType>Exe</OutputType>
+		<RootNamespace>BeamCalculator</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>BeamCalculator</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.beamcalculator</ApplicationId>
+		<ApplicationIdGuid>1EB5C902-015D-49A2-9F6E-3B268D501652</ApplicationIdGuid>
+
+    
+    
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+  <!--Windows publish-->
+  <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' and '$(Configuration)' == 'Release'">
+    <AppxPackageSigningEnabled>true</AppxPackageSigningEnabled>
+    <PackageCertificateThumbprint>06629C7E49EB90DCEC91C978F5C3D5D5A9C548AF</PackageCertificateThumbprint>
+  </PropertyGroup>
+  
+  <!--Android publish-->
+  <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
+    <!--Android keystore-->
+    <AndroidKeystore>True</AndroidKeystore>
+    <AndroidSigningKeyStore>myapp.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyAlias>key</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass></AndroidSigningKeyPass>
+    <AndroidSigningStorePass></AndroidSigningStorePass>
+  </PropertyGroup>
+
+	<PropertyGroup>
+		<!--Fix for msb4018 "GenerateRuntimeConfigurationFiles failed unexpectedly" when building for Android with Triangle.NET-->
+		<GenerateRuntimeConfigurationFiles>False</GenerateRuntimeConfigurationFiles>
+	</PropertyGroup>
+
+  <!--Resourses-->
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+  
+	<ItemGroup>
+	  <None Remove="Resources\Images\about_black_24dp.svg" />
+	  <None Remove="Resources\Images\adjust_section_black_24dp.svg" />
+	  <None Remove="Resources\Images\close_black_24dp.svg" />
+	  <None Remove="Resources\Images\done_black_24dp.svg" />
+	  <None Remove="Resources\Images\error_red_24dp.svg" />
+	  <None Remove="Resources\Images\error_red_42dp.png" />
+	  <None Remove="Resources\Images\error_red_42dp.svg" />
+	  <None Remove="Resources\Images\error_red_64dp.png" />
+	  <None Remove="Resources\Images\results_black_24dp.svg" />
+	  <None Remove="Resources\Images\ruler_black_24dp.svg" />
+	  <None Remove="Resources\Images\section_database_black_24dp.svg" />
+	  <None Remove="Resources\Images\section_design_black_24dp.svg" />
+	  <None Remove="Resources\Images\settings_black_24dp.svg" />
+	  <None Remove="Resources\Images\share_black_24dp.svg" />
+	  <None Remove="Resources\Images\winui_section_design_black_24dp.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Triangle\Triangle.csproj" />
+	</ItemGroup>
+
+	<!--Packeges-->
+	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+	  <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.2" />
+	  <PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.2" />
+      <PackageReference Include="CommunityToolkit.Maui" Version="4.0.0" />
+      <PackageReference Include="CommunityToolkit.Maui.Core" Version="4.0.0" />
+	</ItemGroup>
+    <!--XAMLs-->
+	<ItemGroup>
+	  <Compile Update="Components\SectionVisualizer.xaml.cs">
+	    <DependentUpon>SectionVisualizer.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Components\TitleViews\ButtonsTitleView.xaml.cs">
+	    <DependentUpon>ButtonsTitleView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\SectionToolPage.xaml.cs">
+	    <DependentUpon>SectionToolPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\SectionDesignerPage.xaml.cs">
+	    <DependentUpon>SectionDesignerPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Update="Components\Inputs\ColorPicker.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\SectionVisualizer.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\ResultsDisplayer.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\SettingsContent.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\TitleViews\DefaultTitleView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\TitleViews\ButtonsTitleView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AboutPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SectionToolPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SectionDesignerPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Flyout\FlyoutMenu.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Flyout\FlyoutRoot.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Popups\ColorPickerPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Popups\SettingsPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Models\Beam\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiAsset Include="Resources\Images\restart_black_24dp.svg" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiImage Update="Resources\Images\error_red_42dp.png">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiImage>
+	  <MauiImage Update="Resources\Images\error_red_64dp.png">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiImage>
+	</ItemGroup>
+
+</Project>
