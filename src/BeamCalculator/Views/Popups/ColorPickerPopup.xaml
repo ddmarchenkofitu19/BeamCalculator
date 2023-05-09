@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="BeamCalculator.Views.Popups.ColorPickerPopup"
+               CanBeDismissedByTappingOutsideOfPopup="True"
+               VerticalOptions="End"
+               HorizontalOptions="Start"
+               Size="100, 100"
+               Color="White"
+               Opened="OnOpened">
+
+    <Grid RowDefinitions="45,1,*" VerticalOptions="Fill" HorizontalOptions="Fill">
+        <Rectangle Grid.Row="0"
+                   VerticalOptions="Fill"
+                   HorizontalOptions="Fill"
+                   BackgroundColor="#e0f7fa" />
+        <Label Grid.Row="0"
+               Padding="20,0,0,0"
+               VerticalOptions="Center"
+               HorizontalOptions="Start"
+               FontFamily="Roboto"
+               FontSize="16"
+               FontAttributes="Bold" 
+               Text="Select color" />
+
+        <Line Grid.Row="1"
+              HeightRequest="1" 
+              VerticalOptions="Center"
+              HorizontalOptions="Fill"
+              BackgroundColor="#d6d6d6"/>
+
+        <ScrollView Grid.Row="2"
+                    VerticalOptions="Fill" HorizontalOptions="Fill">
+            <toolkit:UniformItemsLayout x:Name="colorsContainer" Padding="10, 7" >
+
+            </toolkit:UniformItemsLayout>
+
+            <!--<VerticalStackLayout>
+                <Button Text="test" />
+                <Button Text="test" />
+                <Button Text="test" />
+                <Button Text="test" />
+                <Button Text="test" />
+                <Button Text="test" />
+                <Button Text="test" />
+                <Button Text="test9" />
+                <Button Text="test8" />
+                <Button Text="test7" />
+                <Button Text="test6" />
+                <Button Text="test5" />
+                <Button Text="test4" />
+                <Button Text="test3" />
+                <Button Text="test2" />
+                <Button Text="test1" />
+                <Button Text="test0" />
+            </VerticalStackLayout>-->
+            
+            <!--<Grid Padding="10, 7">
+
+                <toolkit:UniformItemsLayout x:Name="colorsContainer" >
+
+                </toolkit:UniformItemsLayout>
+
+            </Grid>-->
+        </ScrollView>
+    </Grid>
+    
+</toolkit:Popup>

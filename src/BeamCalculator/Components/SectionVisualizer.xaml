@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:BeamCalculator.Components"
+             xmlns:skcontrols="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
+             x:Class="BeamCalculator.Components.CrossSectionVisualizer"
+             x:Name="this">
+
+    <Grid x:Name="container"
+          x:DataType="components:CrossSectionVisualizer"
+          BindingContext="{x:Reference Name=this}"
+          HorizontalOptions="Fill"
+          VerticalOptions="Fill"
+          BackgroundColor="White">
+
+        <skcontrols:SKCanvasView x:Name="canvasView"
+                                 IgnorePixelScaling="False"
+                                 EnableTouchEvents="True"
+                                 PaintSurface="OnPaintSurface" 
+                                 Touch="OnTouch"/>
+
+        <Border VerticalOptions="Start"
+                HorizontalOptions="End"
+                Margin="0, 6, 6, 0"
+                Padding="4, 4"
+                StrokeShape="RoundRectangle, 5"
+                BackgroundColor="#a2ffffff"
+                Stroke="#9E9E9E">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="AdjustSection_Tapped"/>
+            </Border.GestureRecognizers>
+            
+            <Image HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   HeightRequest="30"
+                   Source="adjust_section_black_24dp.png"/>
+        </Border>
+
+
+        <Grid VerticalOptions="End"
+              HorizontalOptions="End"
+              Margin="{OnPlatform Android='0,0,10,10', WinUI='0,0,15,15'}">
+
+            <Image HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   IsVisible="{Binding Error}"
+                   Aspect="Center"
+                   Source="error_red_24dp.png" />
+        </Grid>
+    </Grid>
+    
+</ContentView>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:views="clr-namespace:BeamCalculator.Views"
+            xmlns:viewmodels="clr-namespace:BeamCalculator.ViewModels"
+            xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+            xmlns:components="clr-namespace:BeamCalculator.Components"
+            android:TabbedPage.ToolbarPlacement = "Bottom"
+            android:TabbedPage.IsSwipePagingEnabled="False"
+            x:Class="BeamCalculator.Views.SectionToolPage"
+            x:DataType="{x:Type viewmodels:CommonSectionViewModel}"
+            BarBackgroundColor="#ffffff"
+            SelectedTabColor="{OnPlatform Android=#000000, WinUI=#f0f0f0}"
+            UnselectedTabColor="{OnPlatform Android=#7c7c7c, WinUI=#ffffff}"
+            Appearing="TabbedPage_Appearing">
+
+    <!--<NavigationPage.TitleView>
+        <OnPlatform>
+            <On Platform="Android">
+                <On.Value>
+                    <components:ButtonsTitleView x:Name="titleView" Title=""/>
+                </On.Value>
+            </On>
+            <On Platform="WinUI">
+                <On.Value>
+                    <components:DefaultTitleView x:Name="titleView" Title=""/>
+                </On.Value>
+            </On>
+        </OnPlatform>
+    </NavigationPage.TitleView>-->
+
+    <TabbedPage.Children>
+
+        <ContentPage x:Name="sectionPage" 
+                     Title="Section" 
+                     IconImageSource="{OnPlatform Android=section_design_black_24dp.png}"
+                     BackgroundColor="#f0f0f0">
+            <Grid RowDefinitions="auto, auto, *">
+
+                <Frame Grid.Row="0"
+                       CornerRadius="0"
+                       HorizontalOptions="Fill"
+                       VerticalOptions="Fill"
+                       Padding="0"
+                       BackgroundColor="#eeeeee">
+
+                    <components:CrossSectionVisualizer x:Name="sectionVisualizerView"
+                                                       HeightRequest="300" 
+                                                       Section="{Binding Model}"
+                                                       Error="{Binding HasError}" />
+                </Frame>
+                <Line Grid.Row="1" HeightRequest="1" BackgroundColor="#d6d6d6"/>
+
+                <ScrollView Grid.Row="2"
+                            VerticalOptions="Start">
+                    <VerticalStackLayout VerticalOptions="Start">
+                        
+                        <VerticalStackLayout VerticalOptions="Start" 
+                                             HorizontalOptions="FillAndExpand"
+                                             Padding="12,4,0,8"
+                                             Spacing="5"
+                                             BackgroundColor="White"
+                                             x:Name="errAndInputsContainer">
+                            <VerticalStackLayout.Shadow>
+                                <Shadow Brush="Black" Opacity="0.25" Offset="0, 2" Radius="4" />
+                            </VerticalStackLayout.Shadow>
+
+
+
+                            
+                            
+                        </VerticalStackLayout>
+
+                        <Button HorizontalOptions="Start"
+                                BackgroundColor="#80DEEA"
+                                TextColor="Black"
+                                IsVisible="{OnPlatform Android=False, WinUI=True}"
+                                Text="Save Report PDF"
+                                Clicked="ShareReportClicked"/>
+
+                        <Rectangle HeightRequest="12"
+                                   HorizontalOptions="Fill"
+                                   BackgroundColor="Transparent" />
+
+                    </VerticalStackLayout>
+                </ScrollView>
+
+            </Grid>
+        </ContentPage>
+
+        
+        
+        <ContentPage x:Name="paramsPage" 
+                     Title="Params" 
+                     IconImageSource="{OnPlatform Android=results_black_24dp.png}"
+                     BackgroundColor="#f0f0f0">
+            
+            <components:ResultsDisplayer ResultValues="{Binding CalcResults}" />
+
+        </ContentPage>
+
+        
+    </TabbedPage.Children>
+</TabbedPage>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:BeamCalculator.ViewModels"
+             xmlns:components="clr-namespace:BeamCalculator.Components"
+             xmlns:skiasharp="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
+             x:Class="BeamCalculator.Views.SectionDesignerPage"
+             x:DataType="{x:Type viewmodels:SectionDesignerViewModel}"
+             x:Name="this">
+
+
+    <Grid VerticalOptions="Fill" HorizontalOptions="Fill" BackgroundColor="#fff">
+
+        <skiasharp:SKCanvasView x:Name="canvasView"
+                                IgnorePixelScaling="False"
+                                EnableTouchEvents="True"
+                                PaintSurface="OnPaintSurface" 
+                                Touch="OnTouch" />
+
+
+        <Picker HorizontalOptions="Start"
+                VerticalOptions="End"
+                x:Name="gridUnitPicker"
+                SelectedIndexChanged="GridUnit_Changed"
+                BackgroundColor="{OnPlatform Android=Transparent, WinUI=#a2d5d5d5}" />
+
+
+        <VerticalStackLayout HorizontalOptions="End"
+                             VerticalOptions="{OnPlatform Android=Start, WinUI=Center}"
+                             Margin="3"
+                             Spacing="5">
+            
+            <Picker HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    x:Name="selectedContourPicker"
+                    SelectedIndex="0"
+                    SelectedIndexChanged="SelectedContour_Changed"
+                    BackgroundColor="{OnPlatform Android=Transparent, WinUI=#a2d5d5d5}" />
+
+            <Button x:Name="addHoleButton"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    BackgroundColor="#a2d5d5d5"
+                    Padding="12, 7"
+                    CornerRadius="7"
+                    TextColor="Black"
+                    Text="add Hole" 
+                    Clicked="AddHoleButton_Clicked"/>
+
+            <Button x:Name="deleteHoleButton"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    BackgroundColor="#a2d5d5d5"
+                    Padding="12, 7"
+                    CornerRadius="7"
+                    TextColor="Black"
+                    Text="del Hole" 
+                    Clicked="DeleteHoleButton_Clicked"/>
+
+            <Button x:Name="addPointButton"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    BackgroundColor="#a2d5d5d5"
+                    Padding="12, 7"
+                    CornerRadius="7"
+                    TextColor="Black"
+                    Text="add Vertex" 
+                    Clicked="AddPointButton_Clicked"/>
+
+            <Button x:Name="deletePointButton"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    BackgroundColor="#a2d5d5d5"
+                    Padding="12, 7"
+                    CornerRadius="7"
+                    TextColor="Black"
+                    Text="del Vertex" 
+                    Clicked="DeletePointButton_Clicked"/>
+
+        </VerticalStackLayout>
+        
+        
+
+        <Button VerticalOptions="End"
+                HorizontalOptions="End"
+                BackgroundColor="#a2d5d5d5"
+                TextColor="Black"
+                IsVisible="{OnPlatform Android=false, WinUI=true}"
+                Clicked="DoneButton_Clicked" 
+                Text="Done" />
+    </Grid>
+
+</ContentPage>

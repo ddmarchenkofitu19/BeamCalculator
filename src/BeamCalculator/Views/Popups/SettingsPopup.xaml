@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:components="clr-namespace:BeamCalculator.Components"
+               x:Class="BeamCalculator.Views.Popups.SettingsPopup"
+               CanBeDismissedByTappingOutsideOfPopup="{x:OnPlatform Android=True, WinUI=False}"
+               Color="#f0f0f0"
+               Opened="OnOpened">
+
+    <VerticalStackLayout>
+
+        <Grid>
+            <Grid ColumnDefinitions="*,auto" Padding="25,12,12,10" BackgroundColor="#e0f7fa">
+                <!--Title-->
+
+                <Label Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"
+                       FontFamily="Roboto"
+                       FontSize="18"
+                       FontAttributes="Bold" 
+                       Text="Settings" />
+
+                <Grid Grid.Column="2" Padding="3">
+                    <Grid.GestureRecognizers >
+                        <TapGestureRecognizer Tapped="CloseClicked" />
+                    </Grid.GestureRecognizers>
+
+                    <Image HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Source="close_black_24dp.png" />
+                </Grid>
+                
+            </Grid>
+            
+            <Line BackgroundColor="#d6d6d6" HeightRequest="1" VerticalOptions="End" HorizontalOptions="Fill" />
+        </Grid>
+
+        <ScrollView>
+            <components:SettingsContent />
+        </ScrollView>
+
+    </VerticalStackLayout>
+   
+
+</toolkit:Popup>

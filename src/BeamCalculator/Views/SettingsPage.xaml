@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:BeamCalculator.Components"
+             x:Class="BeamCalculator.Views.SettingsPage"
+             BackgroundColor="#f0f0f0">
+    <NavigationPage.TitleView>
+        <components:DefaultTitleView Title="Settings" />
+    </NavigationPage.TitleView>
+
+    <components:SettingsContent />
+
+</ContentPage>

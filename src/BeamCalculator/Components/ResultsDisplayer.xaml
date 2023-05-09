@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeamCalculator.Components.ResultsDisplayer"
+             x:Name="this">
+    
+    <VerticalStackLayout BindingContext="{x:Reference this}">
+
+        <!--<Label Text="{Binding ResultValues.Area}" />
+        <Label Text="{Binding ResultValues.InertiaMomentY}" />
+        <Label Text="{Binding ResultValues.InertiaMomentZ}" />
+        <Label Text="{Binding ResultValues.InertiaMomentYZ}" />
+        <Label Text="{Binding ResultValues.InertiaAxesAngle}" />
+        <Label Text="{Binding ResultValues.MainInertiaMomentY}" />
+        <Label Text="{Binding ResultValues.MainInertiaMomentZ}" />-->
+        <Grid RowDefinitions="35,60,60,60,60,60,60,60"
+              Padding="17,0,0,0" 
+              BackgroundColor="White">
+            <Grid.Shadow >
+                <Shadow Brush="Black" Opacity="0.25" Offset="0, 2" Radius="4" />
+            </Grid.Shadow>
+
+            <!--GroupTitle-->
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End"
+                   Text="Basic properties" 
+                   FontSize="14"
+                   FontAttributes="Bold" />
+
+            <!--GroupItem-->
+            <VerticalStackLayout Grid.Row="1" 
+                                 VerticalOptions="Center">
+                <Label FontSize="16"
+                       Text="Area" 
+                       TextColor="Black"/>
+                <Label FontSize="13"
+                       TextColor="#7c7c7c">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span x:Name="lblAreaUnit" Text="{Binding DistanceUnitString}" />
+                            <Span Text="^2" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
+            <Label Grid.Row="1"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End"
+                   Padding="0,0,12,0"
+                   x:Name="lblAreaValue"
+                   Text="{Binding ResultValues.AreaString}"
+                   TextColor="#0097a7"
+                   FontSize="16" />
+            <Line Grid.Row="1"
+                  HeightRequest="0.5" 
+                  VerticalOptions="End" 
+                  HorizontalOptions="Fill" 
+                  BackgroundColor="#e6e6e6" />
+
+            <!--GroupItem-->
+            <VerticalStackLayout Grid.Row="2" 
+                                 VerticalOptions="Center">
+                <Label FontSize="16"
+                       Text="Inertia, Y" 
+                       TextColor="Black"/>
+                <Label FontSize="13"
+                       TextColor="#7c7c7c">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span x:Name="lblInertiaYUnit" Text="{Binding DistanceUnitString}" />
+                            <Span Text="^4" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
+            <Label Grid.Row="2" 
+                   VerticalOptions="Center"
+                   HorizontalOptions="End"
+                   Padding="0,0,12,0"
+                   x:Name="lblInertiaYValue"
+                   Text="{Binding ResultValues.InertiaMomentYString}"
+                   TextColor="#0097a7"
+                   FontSize="16" />
+            <Line Grid.Row="2"
+                  HeightRequest="0.5" 
+                  VerticalOptions="End" 
+                  HorizontalOptions="Fill" 
+                  BackgroundColor="#e6e6e6" />
+
+            <!--GroupItem-->
+            <VerticalStackLayout Grid.Row="3" 
+                                 VerticalOptions="Center">
+                <Label FontSize="16"
+                       Text="Inertia, Z" 
+                       TextColor="Black"/>
+                <Label FontSize="13"
+                       TextColor="#7c7c7c">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span x:Name="lblInertiaZUnit" Text="{Binding DistanceUnitString}" />
+                            <Span Text="^4" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
+            <Label Grid.Row="3" 
+                   VerticalOptions="Center"
+                   HorizontalOptions="End"
+                   Padding="0,0,12,0"
+                   x:Name="lblInertiaZValue"
+                   Text="{Binding ResultValues.InertiaMomentZString}"
+                   TextColor="#0097a7"
+                   FontSize="16" />
+            <Line Grid.Row="3"
+                  HeightRequest="0.5" 
+                  VerticalOptions="End" 
+                  HorizontalOptions="Fill" 
+                  BackgroundColor="#e6e6e6" />
+
+            <!--GroupItem-->
+            <VerticalStackLayout Grid.Row="4" 
+                                 VerticalOptions="Center">
+                <Label FontSize="16"
+                       Text="Inertia, YZ" 
+                       TextColor="Black"/>
+                <Label FontSize="13"
+                       TextColor="#7c7c7c">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span x:Name="lblInertiaYZUnit" Text="{Binding DistanceUnitString}" />
+                            <Span Text="^4" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
+            <Label Grid.Row="4" 
+                   VerticalOptions="Center"
+                   HorizontalOptions="End"
+                   Padding="0,0,12,0"
+                   x:Name="lblInertiaYZValue"
+                   Text="{Binding ResultValues.InertiaMomentYZString}"
+                   TextColor="#0097a7"
+                   FontSize="16" />
+            <Line Grid.Row="4"
+                  HeightRequest="0.5" 
+                  VerticalOptions="End" 
+                  HorizontalOptions="Fill" 
+                  BackgroundColor="#e6e6e6" />
+
+            <!--GroupItem-->
+            <VerticalStackLayout Grid.Row="5" 
+                                 VerticalOptions="Center">
+                <Label FontSize="16"
+                       Text="Inertia Axes Angel" 
+                       TextColor="Black"/>
+                <Label FontSize="13"
+                       TextColor="#7c7c7c">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span x:Name="lblAngleUnit" Text="deg" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
+            <Label Grid.Row="5" 
+                   VerticalOptions="Center"
+                   HorizontalOptions="End"
+                   Padding="0,0,12,0"
+                   x:Name="lblAngleValue"
+                   Text="{Binding ResultValues.InertiaAxesAngleString}"
+                   TextColor="#0097a7"
+                   FontSize="16" />
+            <Line Grid.Row="5"
+                  HeightRequest="0.5" 
+                  VerticalOptions="End" 
+                  HorizontalOptions="Fill" 
+                  BackgroundColor="#e6e6e6" />
+
+            <!--GroupItem-->
+            <VerticalStackLayout Grid.Row="6" 
+                                 VerticalOptions="Center">
+                <Label FontSize="16"
+                       Text="Main Inertia, Y1" 
+                       TextColor="Black"/>
+                <Label FontSize="13"
+                       TextColor="#7c7c7c">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span x:Name="lblMainInertiaY1Unit" Text="{Binding DistanceUnitString}" />
+                            <Span Text="^4" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
+            <Label Grid.Row="6" 
+                   VerticalOptions="Center"
+                   HorizontalOptions="End"
+                   Padding="0,0,12,0"
+                   x:Name="lblMainInertiaY1Value"
+                   Text="{Binding ResultValues.MainInertiaMomentYString}"
+                   TextColor="#0097a7"
+                   FontSize="16" />
+            <Line Grid.Row="6"
+                  HeightRequest="0.5" 
+                  VerticalOptions="End" 
+                  HorizontalOptions="Fill" 
+                  BackgroundColor="#e6e6e6" />
+
+            <!--GroupItem-->
+            <VerticalStackLayout Grid.Row="7" 
+                                 VerticalOptions="Center">
+                <Label FontSize="16"
+                       Text="Main Inertia, Z1" 
+                       TextColor="Black"/>
+                <Label FontSize="13"
+                       TextColor="#7c7c7c">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span x:Name="lblMainInertiaZ1Unit" Text="{Binding DistanceUnitString}" />
+                            <Span Text="^4" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
+            <Label Grid.Row="7" 
+                   VerticalOptions="Center"
+                   HorizontalOptions="End"
+                   Padding="0,0,12,0"
+                   x:Name="lblMainInertiaZ1Value"
+                   Text="{Binding ResultValues.MainInertiaMomentZString}"
+                   TextColor="#0097a7"
+                   FontSize="16" />
+
+        </Grid>
+        <Rectangle HeightRequest="12"
+                   HorizontalOptions="Fill"
+                   BackgroundColor="Transparent"/>
+
+    </VerticalStackLayout>
+    
+</ContentView>

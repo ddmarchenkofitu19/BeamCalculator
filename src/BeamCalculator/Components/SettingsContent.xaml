@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:BeamCalculator.Components"
+             x:Class="BeamCalculator.Components.SettingsContent">
+
+    <VerticalStackLayout>
+        <Grid RowDefinitions="40, 50, 50, 50" ColumnDefinitions="*,*,*,*,*,*,*,*,*"
+              Padding="15,0,0,0" 
+              Margin="0,0,0,12"
+              BackgroundColor="White">
+            <Grid.Shadow >
+                <Shadow Brush="Black" Opacity="0.25" Offset="0, 2" Radius="4" />
+            </Grid.Shadow>
+
+            <!--GroupTitle-->
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End"
+                   Text="General" 
+                   FontSize="14"
+                   FontAttributes="Bold" />
+
+            <!--GroupItem-->
+            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7"
+                   VerticalOptions="Center"
+                   FontSize="16"
+                   Text="Input Units" />
+            <Picker Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        x:Name="inUnitPicker" 
+                        TextColor="#0097a7"
+                        FontSize="16"
+                        SelectedIndexChanged="inUnitChanged" />
+            <Line Grid.Row="1" Grid.ColumnSpan="9" 
+                      HeightRequest="0.5" 
+                      VerticalOptions="End" 
+                      HorizontalOptions="Fill" 
+                      BackgroundColor="#e6e6e6" />
+
+            <!--GroupItem-->
+            <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="7"
+                   VerticalOptions="Center"
+                   FontSize="16"
+                   Text="Output Units" />
+            <Picker Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="2"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    x:Name="outUnitPicker" 
+                    TextColor="#0097a7"
+                    FontSize="16"
+                    SelectedIndexChanged="outUnitChanged"/>
+            <Line Grid.Row="2" Grid.ColumnSpan="9" 
+                      HeightRequest="0.5" 
+                      VerticalOptions="End" 
+                      HorizontalOptions="Fill" 
+                      BackgroundColor="#e6e6e6" />
+
+            <!--GroupItem-->
+            <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7"
+                   VerticalOptions="Center"
+                   FontSize="16"
+                   Text="Reset All" />
+            <Grid Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="2" Padding="3" >
+                <Grid.GestureRecognizers >
+                    <TapGestureRecognizer Tapped="ResetTapped" />
+                </Grid.GestureRecognizers>
+                <Image  VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            Aspect="Center"
+                            Source="restart_black_24dp.png" />
+            </Grid>
+
+        </Grid>
+        <!--<Rectangle HeightRequest="12"
+                       HorizontalOptions="Fill"
+                       BackgroundColor="Transparent"/>-->
+
+
+
+        <Grid RowDefinitions="40,50,50,50" ColumnDefinitions="*,*,*,*,*,*,*,*,*" 
+                      Padding="15,0,0,0" 
+              Margin="0,0,0,12"
+                      BackgroundColor="White">
+            <!--SectionTitle-->
+            <Grid.Shadow >
+                <Shadow Brush="Black" Opacity="0.25" Offset="0, 2" Radius="4" />
+            </Grid.Shadow>
+
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9"
+                       HorizontalOptions="Start"
+                       VerticalOptions="End"
+                       Text="Section" 
+                       FontSize="14"
+                       FontAttributes="Bold" />
+
+            <!--SectionItem-->
+            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7"
+                       VerticalOptions="Center"
+                       FontSize="16"
+                       Text="Section Fill" />
+            <components:ColorPicker Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Center" 
+                                            SelectedColorChanged="fillColorChanged"
+                                            x:Name="fillColorPicker"/>
+            <Line Grid.Row="1" Grid.ColumnSpan="9" 
+                      HeightRequest="0.5" 
+                      VerticalOptions="End" 
+                      HorizontalOptions="Fill" 
+                      BackgroundColor="#e6e6e6" />
+
+            <!--SectionItem-->
+            <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="7"
+                       VerticalOptions="Center"
+                       FontSize="16"
+                       Text="Section Opacity" />
+            <Picker Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="2"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center" 
+                            TextColor="#0097a7"
+                            FontSize="16"
+                            SelectedIndexChanged="fillOpacityChanged"
+                            x:Name="fillOpacityPicker"/>
+            <Line Grid.Row="2" Grid.ColumnSpan="9" 
+                      HeightRequest="0.5" 
+                      VerticalOptions="End" 
+                      HorizontalOptions="Fill" 
+                      BackgroundColor="#e6e6e6" />
+
+            <!--SectionItem-->
+            <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7"
+                       VerticalOptions="Center"
+                       FontSize="16"
+                       Text="Section Outline" />
+            <components:ColorPicker Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="2"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Center" 
+                                            SelectedColorChanged="outlineColorChanged"
+                                            x:Name="outlineColorPicker"/>
+
+        </Grid>
+
+        
+    </VerticalStackLayout>
+
+</ContentView>

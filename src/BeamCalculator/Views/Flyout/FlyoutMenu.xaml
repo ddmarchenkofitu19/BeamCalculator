@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:BeamCalculator.Views"
+             x:Class="BeamCalculator.Views.Flyout.FlyoutMenu"
+             Title="FlyoutMenu"
+             BackgroundColor="#f0f0f0">
+
+    <Grid RowDefinitions="*,4*,0.3*"
+          HorizontalOptions="Fill" 
+          VerticalOptions="Fill">
+        <Grid.GestureRecognizers>
+            <!--This gesture recognizer preventing tap event from raising on gesture recognizers 
+            placed on flyout detail page under flyout menu-->
+            <TapGestureRecognizer />
+        </Grid.GestureRecognizers>
+
+
+        <Grid Grid.Row="1" 
+              VerticalOptions="Fill" 
+              HorizontalOptions="Fill"
+              BackgroundColor="White">
+            <Grid.Shadow>
+                <Shadow Brush="Black" Opacity="0.25" Offset="0, -2" Radius="4" />
+            </Grid.Shadow>
+            
+            <VerticalStackLayout x:Name="menuItemContainer">
+                <!--Menu items list-->
+
+                <!--<Grid HeightRequest="48" ColumnDefinitions="*, 3.9*" 
+                      HorizontalOptions="Fill"
+                      BackgroundColor="LightGray">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="toolsGestrRecognizer" 
+                                              x:FieldModifier="public" 
+                                              CommandParameter="{x:Type views:ToolsListPage}"/>
+                    </Grid.GestureRecognizers>
+
+                    <Image Grid.Row="0" Grid.Column="0" 
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           Aspect="Center"
+                           Source="tools_black_24dp.svg" />
+                    <Label Grid.Row="0" Grid.Column="1" 
+                           Margin="4,0" 
+                           Text="Tools" 
+                           FontSize="17" 
+                           FontAttributes="Bold" 
+                           VerticalOptions="Center" />
+                    <Grid Grid.Row="1" Grid.Column="1" 
+                          VerticalOptions="Fill" 
+                          HorizontalOptions="Fill">
+                        <Label HorizontalOptions="End"
+                               VerticalOptions="Center"
+                               Padding="10,0"
+                               Text=""
+                               FontSize="17"
+                               TextColor="#0097a7" />
+                    </Grid>
+
+                </Grid>-->
+            </VerticalStackLayout>
+        </Grid>
+
+        
+        <HorizontalStackLayout Grid.Row="2" 
+                               Padding="10,0,0,0"
+                               Spacing="5"
+                               BackgroundColor="LightBlue">
+            <!--Bottom menu bar-->
+            <Label VerticalOptions="Center"
+                   Text="App_Name"
+                   FontAttributes="Bold"/>
+            <Label VerticalOptions="Center"
+                   Text="app_version"/>
+        </HorizontalStackLayout>
+    </Grid>
+
+</ContentPage>
